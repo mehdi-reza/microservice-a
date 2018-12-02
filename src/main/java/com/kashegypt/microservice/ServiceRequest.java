@@ -1,23 +1,33 @@
 package com.kashegypt.microservice;
 
 public class ServiceRequest {
-	
-	private String fullName;
-	private int age;
-	
-	public String getFullName() {
-		return fullName;
+
+	private String eventName;
+	private Double amount;
+	private int id;
+
+	public String getEventName() {
+		return eventName;
 	}
-	
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
 	}
-	
-	public int getAge() {
-		return age;
+
+	public Double getAmount() {
+		return amount;
 	}
-	
-	public void setAge(int age) {
-		this.age = age;
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 }

@@ -1,5 +1,8 @@
 package com.kashegypt.microservice;
 
+import javax.inject.Inject;
+import javax.json.bind.Jsonb;
+
 import org.microprofile.microservice.MicroService;
 import org.microprofile.microservice.annotations.ServiceDescriptor;
 import org.microprofile.microservice.context.RequestContext;
@@ -11,9 +14,13 @@ public class ServiceA implements MicroService {
 
 	private Logger logger=LoggerFactory.getLogger(ServiceA.class);
 
+	@Inject
+	Jsonb jsonb;
+	
 	public Object service(RequestContext context) {
 		
-		logger.info("Servicing.. {}", context.getPayload());
+		ServiceRequest request=jsonb.fromJson(context.getPayload().toString(), ServiceRequest.class);
+		logger.info("Servicing.. id: {}, eventName: {}, amount: {}", request.getId(), request.getEventName(), request.getAmount());
 		
 		context.next("microservice-b");
 
