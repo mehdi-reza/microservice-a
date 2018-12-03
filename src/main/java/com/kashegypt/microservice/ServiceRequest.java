@@ -1,7 +1,13 @@
 package com.kashegypt.microservice;
 
-public class ServiceRequest {
+import java.io.Serializable;
 
+public class ServiceRequest implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5199743347362947715L;
 	private String eventName;
 	private Double amount;
 	private int id;
