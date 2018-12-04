@@ -17,9 +17,9 @@ public class ServiceA implements MicroService<ServiceRequest, ServiceResponse> {
 	@Inject
 	Jsonb jsonb;
 	
-	public ServiceResponse service(RequestContext<ServiceRequest> context) {
+	public ServiceResponse service(RequestContext context) {
 		
-		ServiceRequest request=context.getPayload();  //jsonb.fromJson(context.getPayload().toString(), ServiceRequest.class);
+		ServiceRequest request=(ServiceRequest) context.getPayload();  //jsonb.fromJson(context.getPayload().toString(), ServiceRequest.class);
 		logger.info("Servicing.. id: {}, eventName: {}, amount: {}", request.getId(), request.getEventName(), request.getAmount());
 		
 		context.next("microservice-b");

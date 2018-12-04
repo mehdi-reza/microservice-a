@@ -1,13 +1,16 @@
 package com.kashegypt.microservice;
 
-import java.io.Serializable;
+import org.microprofile.microservice.data.ResponseData;
 
-public class ServiceResponse implements Serializable {
+public class ServiceResponse extends ResponseData {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6284987689557509075L;
+	private static final long serialVersionUID = -6264268061050477667L;
+	/**
+	 * 
+	 */
 	private boolean success;
 
 	public ServiceResponse(boolean success) {
