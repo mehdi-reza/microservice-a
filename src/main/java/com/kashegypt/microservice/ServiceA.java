@@ -10,16 +10,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ServiceDescriptor(name="microservice-a", url="http://blah-blah.com")
-public class ServiceA implements MicroService {
+public class ServiceA implements MicroService<ServiceRequest, ServiceResponse> {
 
 	private Logger logger=LoggerFactory.getLogger(ServiceA.class);
 
 	@Inject
 	Jsonb jsonb;
 	
-	public Object service(RequestContext context) {
+	public ServiceResponse service(RequestContext context) {
 		
-		ServiceRequest request=jsonb.fromJson(context.getPayload().toString(), ServiceRequest.class);
+		ServiceRequest request=(ServiceRequest) context.getPayload();  //jsonb.fromJson(context.getPayload().toString(), ServiceRequest.class);
 		logger.info("Servicing.. id: {}, eventName: {}, amount: {}", request.getId(), request.getEventName(), request.getAmount());
 		
 		context.next("microservice-b");
@@ -29,5 +29,9 @@ public class ServiceA implements MicroService {
 
 	public Class<ServiceRequest> getRequestType() {
 		return ServiceRequest.class;
+	}
+
+	public Class<ServiceResponse> getResponseType() {
+		return ServiceResponse.class;
 	}
 }

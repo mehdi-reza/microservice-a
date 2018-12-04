@@ -1,7 +1,16 @@
 package com.kashegypt.microservice;
 
-public class ServiceRequest {
+import org.microprofile.microservice.data.RequestData;
 
+public class ServiceRequest extends RequestData {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7908252573769338592L;
+	/**
+	 * 
+	 */
 	private String eventName;
 	private Double amount;
 	private int id;
